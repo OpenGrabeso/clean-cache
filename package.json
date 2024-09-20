@@ -1,0 +1,22 @@
+{
+  "name": "@opengrabeso/clear-cache-action",
+  "description": "Cleans up caches for GitHub Actions by their keys or branches. ",
+  "author": "Ondrej Spanel <ondrejspanel@users.noreply.github.com>",
+  "license": "MIT",
+  "readme": "README.md",
+  "main": "index.js",
+  "scripts": {
+    "build": "esbuild index.js post.js --bundle --platform=node --outdir=dist"
+  },
+  "dependencies": {
+    "@actions/core": "^1.10.1",
+    "@actions/exec": "^1.1.1",
+    "@actions/github": "^6.0.0",
+    "@octokit/rest": "^21.0.2",
+    "node-fetch": "^3.3.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20.5.9",
+    "esbuild": "^0.23.1"
+  }
+}
