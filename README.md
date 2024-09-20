@@ -4,7 +4,7 @@ Cleans up caches for GitHub Actions by their keys or branches.
 
 ## Examples
 
-### Delete all caches for a pull request after closed
+### Keep only most recent cache while working on a branch
 
 ```yaml
 on:
