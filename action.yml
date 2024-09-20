@@ -14,9 +14,10 @@ inputs:
     description: Authenticated GitHub token.
     default: '${{ github.token }}'
   ref:
-    required: false
     description: The full Git reference for which the cache should be cleaned. Use refs/pull/<number>/merge for PRs.
-    default: 'refs/heads/${{ github.ref_name }}'
+                 When not present, context is detected automatically and PR, branch or both caches are cleaned.
+  includePrefix:
+    description: Caches with keys matching this as prefix will be deleted
   except:
     description: Key which should not be deleted
   post:

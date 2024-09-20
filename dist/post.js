@@ -23076,6 +23076,7 @@ var require_common = __commonJS({
             repo: github.context.repo.repo,
             ref
           });
+          console.log(JSON.stringify(result.data));
           const caches = result.data.actions_caches;
           console.log(`Cache keys for ${ref}: ${caches.length}, keep ${keep}`);
           const cachesToDelete = caches.slice(keep);
