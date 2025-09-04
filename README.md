@@ -22,7 +22,7 @@ jobs:
     permissions:
       actions: write
     steps:
-      - uses: opengrabeso/clean-cache@v1.0.2
+      - uses: opengrabeso/clean-cache@v1.1.0
         with:  
           post: true
           keep: 1
@@ -46,5 +46,5 @@ jobs:
     steps:
 
       - name: Clean cache for the branch name
-        uses: opengrabeso/clean-cache@v1.0.2
+        uses: opengrabeso/clean-cache@v1.1.0
 ```
