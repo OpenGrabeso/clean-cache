@@ -12,6 +12,7 @@ async function cleanCaches(post) {
             const except = core.getInput('except');
             const include = core.getInput('includePrefix');
             const keep = parseInt(core.getInput('keep'), 10);
+            const verbose = core.getInput('verbose') === 'true';
 
             const octokit = github.getOctokit(token);
 
@@ -42,20 +43,34 @@ async function cleanCaches(post) {
                 const result = await octokit.rest.actions.getActionsCacheList({
                     owner: github.context.repo.owner,
                     repo: github.context.repo.repo,
-                    ref: ref
+                    ref: ref,
+                    sort: 'created_at',
+                    direction: 'desc'
                 });
                 const refCaches = result.data.actions_caches
                 console.log(`Cache keys for ${ref}: ${refCaches.length}`);
                 cachesToDelete.push(...refCaches);
+
+                if (verbose) {
+                    for (const cache of refCaches) {
+                        const createdAtStr = new Date(cache.created_at)
+                            .toLocaleString(undefined, { dateStyle: 'medium', timeStyle: 'short' });
+                        const lastAccessedAtStr = new Date(cache.last_accessed_at)
+                            .toLocaleString(undefined, { dateStyle: 'medium', timeStyle: 'short' });
+                        console.log(`Cache: ${cache.key} created: ${createdAtStr}, accessed: ${lastAccessedAtStr}`);
+                    }
+                }
             }
 
             cachesToDelete = cachesToDelete
-                .sort((a, b) => new Date(b.last_accessed_at) - new Date(a.last_accessed_at))
                 .filter(cache => cache.key !== except && cache.key.startsWith(include))
                 .slice(keep);
 
             for (const cache of cachesToDelete) {
-                console.log(`Deleting cache: ${cache.key}`);
+                const createdAtStr = new Date(cache.created_at)
+                    .toLocaleString(undefined, { dateStyle: 'medium', timeStyle: 'short' });
+
+                console.log(`Deleting cache: ${cache.key} ${createdAtStr}`);
                 await octokit.rest.actions.deleteActionsCacheById({
                     owner: github.context.repo.owner,
                     repo: github.context.repo.repo,

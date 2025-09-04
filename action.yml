@@ -17,11 +17,14 @@ inputs:
     description: The full Git reference for which the cache should be cleaned. Use refs/pull/<number>/merge for PRs.
                  When not present, context is detected automatically and PR, branch or both caches are cleaned.
   includePrefix:
-    description: Caches with keys matching this as prefix will be deleted
+    description: Caches with keys matching this as prefix will be deleted, oldest created first.
   except:
     description: Key which should not be deleted
   post:
     description: Run the cleanup post workflow
+    default: 'false'
+  verbose:
+    description: Log all existing caches with timestamps
     default: 'false'
   keep:
     description: Number of most recent items to keep
