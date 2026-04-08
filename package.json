@@ -6,7 +6,7 @@
   "readme": "README.md",
   "main": "index.js",
   "scripts": {
-    "build": "esbuild index.js post.js --bundle --platform=node --target=node24 --outdir=dist"
+    "build": "esbuild index.js post.js --bundle --format=cjs --platform=node --target=node24 --outdir=dist"
   },
   "dependencies": {
     "@actions/core": "^3.0.0",
