@@ -1,6 +1,7 @@
-const { cleanCaches } = require('./common');
-const {error} = require("@actions/core");
-const {exit} = require("node:process");
+import { error } from '@actions/core';
+import { exit } from 'node:process';
+
+import { cleanCaches } from './common.js';
 
 (async () => {
     await cleanCaches(true);
