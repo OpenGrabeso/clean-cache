@@ -7,7 +7,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "build": "esbuild index.js post.js --bundle --format=esm --platform=node --target=node20 --outdir=dist"
+    "build": "esbuild index.js post.js --bundle --format=esm --platform=node --target=node24 --outdir=dist"
   },
   "dependencies": {
     "@actions/core": "^3.0.0",
