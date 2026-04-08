@@ -1,5 +1,5 @@
-import * as core from '@actions/core';
-import * as github from '@actions/github';
+const core = require('@actions/core');
+const github = require('@actions/github');
 
 async function cleanCaches(post) {
     const asPost = core.getInput('post') === 'true';
@@ -83,4 +83,4 @@ async function cleanCaches(post) {
     }
 }
 
-export { cleanCaches };
+module.exports = { cleanCaches };
