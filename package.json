@@ -4,9 +4,10 @@
   "author": "Ondrej Spanel <ondrejspanel@users.noreply.github.com>",
   "license": "MIT",
   "readme": "README.md",
-  "main": "index.js",
+  "type": "module",
+  "main": "dist/index.cjs",
   "scripts": {
-    "build": "esbuild index.js post.js --bundle --format=cjs --platform=node --target=node24 --outdir=dist"
+    "build": "esbuild index.js post.js --bundle --format=cjs --platform=node --target=node24 --outdir=dist --out-extension:.js=.cjs"
   },
   "dependencies": {
     "@actions/core": "^3.0.0",
